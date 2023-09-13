@@ -1,29 +1,25 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using CruzITELEC1C.Models;
 @{
     //use viewbag to get data from controller to view
 }
 <h1> Student List</h1>
-<table>
+<table class="table table-dark">
     <tr>
-        <td> Name:</td>
-        <td> @ViewBag.student.StudentName</td>
-    <tr>
-        <td> Student ID:</td>
-        <td> @ViewBag.student.StudentId</td>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Date Enrolled</th>
+        <th>Details</th>
     </tr>
-    </tr>
-    <tr>
-        <td> Date Enrolled:</td>
-        <td> @ViewBag.student.DateEnrolled</td>
-    </tr>
-    <tr>
-        <td> Course:</td>
-        <td> @ViewBag.student.Course</td>
-    </tr>
-    <tr>
-        <td> Email:</td>
-        <td> @ViewBag.student.Email</td>
-    </tr>
-</table>
+   
+    @foreach(var Student in Model) {
+        <tr>
+            <th>@Student.StudentName </th>
+            <th>@Student.Course</th>
+            <th>@Student.DateEnrolled</th>
+            <th><a asp-action="ShowDetails" Show Details"></a></th>
+        </tr>
+    }
+    </table>

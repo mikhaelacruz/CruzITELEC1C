@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<CruzITELEC1C.Models.Instructor>
+@{
+
+    //using for each loop
+}
+
+<h1> Instructor List</h1>
+<table>
+    <tr>
+        <th> Name: </th>
+        <th> Date Hired: </th>
+        <th> Email: </th>
+        <th> Rank: </th>
+        <th> ID: </th> 
+
+    </tr>
+
+     @foreach(var inst in Model)
+    {
+        <tr>
+            <td>@inst.InstructorName</td>
+            <td>@inst.DateHired</td>
+            <td>@inst.InstructorEmail</td>
+            <td>@inst.Rank</td>
+            <td>@inst.InstructorId</td>
+        </tr>
+    } 
+</table>

@@ -1,31 +1,36 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model IEnumerable<CruzITELEC1C.Models.Instructor>
-@{
 
-    //using for each loop
+@{
 }
 
-<h1> Instructor List</h1>
-<table>
-    <tr>
-        <th> Name: </th>
-        <th> Date Hired: </th>
-        <th> Email: </th>
-        <th> Rank: </th>
-        <th> ID: </th> 
+@model IEnumerable<CruzITELEC1C.Models.Instructor>
 
+<h1>Instructor View</h1>
+
+<table class="table table-dark">
+    <tr>
+        <th>ID:</th>
+        <th>Name: </th>
+        <th>IsTenured: </th>
+        <th>Email: </th>
+        <th>Rank: </th>
+        <th>Date Hired: </th>
+        <th>Details:</th>
     </tr>
 
-     @foreach(var inst in Model)
+    @foreach(var Instructor in Model)
     {
         <tr>
-            <td>@inst.InstructorName</td>
-            <td>@inst.DateHired</td>
-            <td>@inst.InstructorEmail</td>
-            <td>@inst.Rank</td>
-            <td>@inst.InstructorId</td>
+            <td>@Instructor.InstructorId</td>
+            <td>@Instructor.InstructorFirstName @Instructor.InstructorLastName</td>
+            <td>@Instructor.IsTenured</td>
+            <td>@Instructor.InstructorEmail</td>
+            <td>@Instructor.Rank</td>
+            <td>@Instructor.DateHired</td>
+            <td><a asp-action="ShowDetails" asp-route-id="@Instructor.InstructorId">Show Details</a></td>
         </tr>
-    } 
+        
+    }
 </table>

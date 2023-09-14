@@ -9,21 +9,17 @@ namespace CruzITELEC1C.Controllers
         {
             new Instructor()
             {
-                InstructorName = "Gabriel Montano", DateHired = DateTime.Now,
-                InstructorEmail = "gdmontano@ust.edu.ph", Rank = Rank.Instructor, 
-                InstructorId = 100
+                InstructorId=1, InstructorFirstName = "Gabriel", InstructorLastName = "Montano", IsTenured= true,
+                InstructorEmail ="gabrielmontano@ust.edu.ph", Rank = Rank.Instructor, DateHired = DateTime.Now
             },
             new Instructor()
             {
-                InstructorName = "Leo Lintag", DateHired = DateTime.Parse("25/5/2020"),
-                InstructorEmail = "llintag@ust.edu.ph", Rank = Rank.AsstProf,
-                InstructorId = 200
-            },
+                InstructorId=2, InstructorFirstName = "Mikhaela", InstructorLastName = "Cruz", IsTenured= true,
+                InstructorEmail ="mikhaela.cruz.cics@ust.edu.ph", Rank = Rank.AsstProf, DateHired = DateTime.Parse("28/09/2022")            },
             new Instructor()
             {
-                InstructorName = "Kirby Wenceslao", DateHired = DateTime.Parse("14/7/2019"),
-                InstructorEmail = "kwenceslao@ust.edu.ph", Rank = Rank.Prof,
-                InstructorId = 300
+                InstructorId=3, InstructorFirstName = "Kirby", InstructorLastName = "Wenceslao", IsTenured= true,
+                InstructorEmail ="kirby.wenceslao.cics@ust.edu.ph", Rank = Rank.Prof, DateHired = DateTime.Parse("28/07/2022")
             },
         };
         public IActionResult Index()
@@ -31,9 +27,14 @@ namespace CruzITELEC1C.Controllers
             return View(InstructorList);
         }
 
-        public IActionResult ShowDetails()
+        public IActionResult ShowDetails(int id)
         {
-            return View();
+            Instructor? instructor = InstructorList.FirstOrDefault(st => st.InstructorId == id);
+
+            if (instructor != null)
+                return View(instructor);
+
+            return NotFound();
         }
     }
 }

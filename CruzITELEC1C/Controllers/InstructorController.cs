@@ -15,11 +15,12 @@ namespace CruzITELEC1C.Controllers
             new Instructor()
             {
                 InstructorId=2, InstructorFirstName = "Mikhaela", InstructorLastName = "Cruz", IsTenured= true,
-                InstructorEmail ="mikhaela.cruz.cics@ust.edu.ph", Rank = Rank.AsstProf, DateHired = DateTime.Parse("28/09/2022")            },
+                InstructorEmail ="mikhaela.cruz.cics@ust.edu.ph", Rank = Rank.AsstProf, DateHired = DateTime.Parse("12/06/2018")
+            },
             new Instructor()
             {
                 InstructorId=3, InstructorFirstName = "Kirby", InstructorLastName = "Wenceslao", IsTenured= true,
-                InstructorEmail ="kirby.wenceslao.cics@ust.edu.ph", Rank = Rank.Prof, DateHired = DateTime.Parse("28/07/2022")
+                InstructorEmail ="kirby.wenceslao.cics@ust.edu.ph", Rank = Rank.Prof, DateHired = DateTime.Parse("28/08/2015")
             },
         };
         public IActionResult Index()

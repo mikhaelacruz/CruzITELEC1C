@@ -1,0 +1,34 @@
+﻿@model Student;
+
+
+<h2>Student Details</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Student ID</th>
+        <td>@Model.StudentId</td>
+    </tr>
+    <tr>
+        <th>Student Name</th>
+        <td>@Model.StudentName</td>
+    </tr>
+    <tr>
+        <th>Student Email</th>
+        <td>@Model.StudentEmail</td>
+    </tr>
+
+    <tr>
+        <th>Student Course</th>
+        <td>@Model.Course</td>
+    </tr>
+
+    <tr>
+        <th>Student Date Hired</th>
+        <td>
+            @Model.DateEnrolled
+        </td>
+    </tr>
+</table>
+
+<a href="/Student">Back</a>

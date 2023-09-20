@@ -1,0 +1,34 @@
+﻿@model Student;
+
+
+
+<h2>Add Student</h2>
+
+
+<form method="post" asp-action="AddStudent" asp-controller="Student" class='p-2 row gx-3 gy-2 align-items-center'>
+    <div class="form-group">
+        <label asp-for="StudentId">Student ID</label>
+        <input class="form-control" asp-for="StudentId" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StudentName">Enter StudentName</label>
+        <input class="form-control" asp-for="StudentName" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StudentEmail">Enter Email</label>
+        <input class="form-control" asp-for="StudentEmail" />
+    </div>
+    <div class="form-group">
+
+        <label class="input-group-text" asp-for="Course">Enter Course</label>
+        <input class="form-control" asp-items="@Html.GetEnumSelectList(typeof(Course))" asp-for="Course" />
+
+    </div>
+    <div class=" form-group">
+        <label asp-for="DateEnrolled">Date Enrolled</label>
+        <input asp-for="DateEnrolled" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary p-20">Submit</button>
+
+</form>

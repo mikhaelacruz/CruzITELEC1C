@@ -37,5 +37,45 @@ namespace CruzITELEC1C.Controllers
 
             return NotFound();
         }
+
+        [HttpGet]
+        public IActionResult AddInst()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddInst(Instructor NewInstructor)
+        {
+            InstructorList.Add(NewInstructor);
+            return View("Index", InstructorList);
+        }
+        public IActionResult UpdateInstructor(int id)
+        {
+
+            Instructor? student = InstructorList.FirstOrDefault(t => t.InstructorId == id);
+
+            if (student != null)
+            {
+                return View(student);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult UpdateInstructor(Instructor UpdateInstructor)
+        {
+            Instructor? instructor = InstructorList.FirstOrDefault(t => t.InstructorId == UpdateInstructor.InstructorId);
+
+            if (instructor != null)
+            {
+                instructor.InstructorFirstName = UpdateInstructor.InstructorFirstName;
+                instructor.InstructorLastName = UpdateInstructor.InstructorLastName;
+
+            };
+
+            return View("Index", InstructorList);
+        }
+
     }
 }
+

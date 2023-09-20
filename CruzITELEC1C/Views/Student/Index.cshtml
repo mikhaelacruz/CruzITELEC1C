@@ -8,18 +8,30 @@
 <h1> Student List</h1>
 <table class="table table-dark">
     <tr>
+        <th>ID</th>
         <th>Name</th>
+        <th>Email</th>
         <th>Course</th>
         <th>Date Enrolled</th>
-        <th>Details</th>
+        <th>Show Details</th>
+        <th>Update</th>
     </tr>
-   
-    @foreach(var Student in Model) {
-        <tr>
-            <th>@Student.StudentName </th>
-            <th>@Student.Course</th>
-            <th>@Student.DateEnrolled</th>
-            <th><a asp-action="ShowDetails" Show Details"></a></th>
-        </tr>
+
+    @{
+        foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.StudentName</td>
+                <td>@student.StudentEmail</td>
+                <td>@student.Course</td>
+                <td>@student.DateEnrolled</td>
+                <td>
+                    <a asp-action="ShowDetails" asp-route-id="@student.StudentId" class="btn btn-primary">Show Details</a>
+                </td>
+                <td>
+                    <a asp-action="UpdateStudent" asp-route-id="@student.StudentId" class="btn btn-primary">Update</a>
+                </td>
+            </tr>
+        }
     }
-    </table>

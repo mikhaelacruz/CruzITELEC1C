@@ -5,7 +5,7 @@ namespace CruzITELEC1C.Controllers
 {
     public class StudentController : Controller
     {
-        List<Student> InstructorList = new List<Student>()
+        List<Student> StudentList = new List<Student>()
         { new Student()
             {
                 StudentName = "Mikhaela Cruz", DateEnrolled = DateTime.Now,
@@ -28,7 +28,55 @@ namespace CruzITELEC1C.Controllers
         };
         public IActionResult Index()
         {
-            return View(InstructorList);
+            return View(StudentList);
+        }
+
+        public IActionResult ShowDetails(int id)
+        {
+            Student? student = StudentList.FirstOrDefault(t => t.StudentId == id);
+
+            if (student != null)
+            {
+                return View(student);
+            }
+            return NotFound();
+        }
+        [HttpGet]
+        public IActionResult AddStudent()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddStudent(Student newstudent)
+        {
+
+            StudentList.Add(newstudent);
+            return View("Index", StudentList);
+        }
+        public IActionResult UpdateStudent(int id)
+        {
+
+            Student? student = StudentList.FirstOrDefault(t => t.StudentId == id);
+
+            if (student != null)
+            {
+                return View(student);
+            }
+            return NotFound();
+        }
+        [HttpPost]
+        public IActionResult UpdateStudent(Student UpdateStudent)
+        {
+            Student? student = StudentList.FirstOrDefault(t => t.StudentId == UpdateStudent.StudentId);
+
+            if (student != null)
+            {
+                student.StudentName = UpdateStudent.StudentName;
+                student.StudentEmail = UpdateStudent.StudentEmail;
+                student.Course = UpdateStudent.Course;
+            };
+
+            return View("Index", StudentList);
         }
     }
 }

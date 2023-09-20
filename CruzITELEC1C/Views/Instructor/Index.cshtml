@@ -11,26 +11,46 @@
 
 <table class="table table-dark">
     <tr>
-        <th>ID:</th>
-        <th>Name: </th>
-        <th>IsTenured: </th>
-        <th>Email: </th>
-        <th>Rank: </th>
-        <th>Date Hired: </th>
-        <th>Details:</th>
+        <th>ID</th>
+        <th>First Name </th>
+        <th>Last Name </th>
+        <th>Tenured </th>
+        <th>Rank </th>
+        <th>Date Hired </th>
+        <th>Show Details</th>
+        <th>Update</th>
     </tr>
+    @{
+        foreach (var element in Model)
+        {
+            <tr>
+                <td>@element.InstructorId</td>
+                <td>@element.InstructorFirstName</td>
+                <td>@element.InstructorLastName</td>
+                <td>
+                    @{
 
-    @foreach(var Instructor in Model)
-    {
-        <tr>
-            <td>@Instructor.InstructorId</td>
-            <td>@Instructor.InstructorFirstName @Instructor.InstructorLastName</td>
-            <td>@Instructor.IsTenured</td>
-            <td>@Instructor.InstructorEmail</td>
-            <td>@Instructor.Rank</td>
-            <td>@Instructor.DateHired</td>
-            <td><a asp-action="ShowDetails" asp-route-id="@Instructor.InstructorId">Show Details</a></td>
-        </tr>
-        
+                        if (@element.IsTenured == true)
+                        {
+                            <span>Full-Time</span>
+                        }
+                        else
+                        {
+
+                            <span>Part-Time</span>
+                        }
+                    }
+                </td>
+                <td>@element.Rank</td>
+                <td>@element.DateHired</td>
+                <td>
+                        <a asp-action="ShowDetails" asp-route-id="@element.InstructorId" class="btn btn-primary">Show Details</a>
+                </td>
+                <td>
+                    <a asp-action="UpdateInstructor" asp-route-id="@element.InstructorId" class="btn btn-primary">Update</a>
+                </td>
+            </tr>
+        }
     }
 </table>
+</div>

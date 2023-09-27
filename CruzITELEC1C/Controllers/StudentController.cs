@@ -78,5 +78,31 @@ namespace CruzITELEC1C.Controllers
 
             return View("Index", StudentList);
         }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+
+            Student? student = StudentList.FirstOrDefault(t => t.StudentId == id);
+
+            if (student != null)
+            {
+                return View(student);
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Student newStudent)
+        {
+
+            Student? student = StudentList.FirstOrDefault(t => t.StudentId == newStudent.StudentId);
+
+            if (student != null)
+                StudentList.Remove(student);
+
+            return View("Index", StudentList);
+        }
     }
 }
+

@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+body {
+    overflow: hidden; /* Hide scrollbars */
+}
+
+html {
+    width: 100vw;
+}

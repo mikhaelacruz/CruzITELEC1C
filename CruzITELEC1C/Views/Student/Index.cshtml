@@ -5,7 +5,12 @@
 @{
     //use viewbag to get data from controller to view
 }
+
+@model IEnumerable<CruzITELEC1C.Models.Student>
+
 <h1> Student List</h1>
+<br />
+
 <table class="table table-dark">
     <tr>
         <th>ID</th>
@@ -15,7 +20,10 @@
         <th>Date Enrolled</th>
         <th>Show Details</th>
         <th>Update</th>
+        <th>Delete</th>
     </tr>
+    <br />
+    <br />
 
     @{
         foreach (var student in Model)
@@ -32,6 +40,12 @@
                 <td>
                     <a asp-action="UpdateStudent" asp-route-id="@student.StudentId" class="btn btn-primary">Update</a>
                 </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@student.StudentId" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
+
     }
+</table>
+<a class="btn btn-primary" asp-action="AddStudent">Add Student</a>

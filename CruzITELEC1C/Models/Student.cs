@@ -1,6 +1,5 @@
 ﻿namespace CruzITELEC1C.Models
 { 
-    
     public enum Course
     {
         BSIT, BSCS, BSIS

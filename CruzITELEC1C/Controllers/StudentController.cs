@@ -1,39 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CruzITELEC1C.Models;
+using CruzITELEC1C.Services;
 
 namespace CruzITELEC1C.Controllers
 {
     public class StudentController : Controller
     {
-        List<Student> StudentList = new List<Student>()
-        { new Student()
-            {
-                StudentName = "Mikhaela Cruz", DateEnrolled = DateTime.Now,
-                StudentEmail = "mikhaela.cruz.cics@ust.edu.ph", Course = Course.BSIS,
-                StudentId = 100
-            },
-            new Student()
-            {
-                StudentName = "Ollie Bahinting", DateEnrolled = DateTime.Parse("25/5/2020"),
-                StudentEmail = "ollie.bahinting.cics@ust.edu.ph", Course = Course.BSIT,
-                StudentId = 200
-            },
-            new Student()
-            {
-                StudentName = "Kirby Wenceslao", DateEnrolled = DateTime.Parse("14/7/2019"),
-                StudentEmail = "kirby.wenceslao.cics@ust.edu.ph", Course = Course.BSCS,
-                StudentId = 300
-            },
-
-        };
+        private readonly IMyFakeDataService _dummyData;
+        public StudentController(IMyFakeDataService dummyData)
+        {
+            _dummyData = dummyData;
+        }
         public IActionResult Index()
         {
-            return View(StudentList);
+            return View(_dummyData.StudentList);
         }
 
         public IActionResult ShowDetails(int id)
         {
-            Student? student = StudentList.FirstOrDefault(t => t.StudentId == id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
 
             if (student != null)
             {
@@ -47,16 +32,17 @@ namespace CruzITELEC1C.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddStudent(Student newstudent)
+        public IActionResult AddStudent(Student NewStudent)
         {
-
-            StudentList.Add(newstudent);
-            return View("Index", StudentList);
+            _dummyData.StudentList.Add(NewStudent);
+            return View("Index", _dummyData.StudentList);
         }
+
+        [HttpGet]
         public IActionResult UpdateStudent(int id)
         {
 
-            Student? student = StudentList.FirstOrDefault(t => t.StudentId == id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
 
             if (student != null)
             {
@@ -67,23 +53,25 @@ namespace CruzITELEC1C.Controllers
         [HttpPost]
         public IActionResult UpdateStudent(Student UpdateStudent)
         {
-            Student? student = StudentList.FirstOrDefault(t => t.StudentId == UpdateStudent.StudentId);
+            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == UpdateStudent.StudentId);
 
             if (student != null)
             {
+                student.StudentId = UpdateStudent.StudentId;
                 student.StudentName = UpdateStudent.StudentName;
                 student.StudentEmail = UpdateStudent.StudentEmail;
                 student.Course = UpdateStudent.Course;
+                student.DateEnrolled = UpdateStudent.DateEnrolled;
             };
 
-            return View("Index", StudentList);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
 
-            Student? student = StudentList.FirstOrDefault(t => t.StudentId == id);
+            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
 
             if (student != null)
             {
@@ -96,12 +84,12 @@ namespace CruzITELEC1C.Controllers
         public IActionResult Delete(Student newStudent)
         {
 
-            Student? student = StudentList.FirstOrDefault(t => t.StudentId == newStudent.StudentId);
+            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == newStudent.StudentId);
 
             if (student != null)
-                StudentList.Remove(student);
+                _dummyData.StudentList.Remove(student);
 
-            return View("Index", StudentList);
+            return RedirectToAction("Index");
         }
     }
 }

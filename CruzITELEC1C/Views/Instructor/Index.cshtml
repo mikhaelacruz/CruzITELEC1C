@@ -19,18 +19,19 @@
         <th>Date Hired </th>
         <th>Show Details</th>
         <th>Update</th>
+        <th>Delete</th>
     </tr>
     @{
-        foreach (var element in Model)
+        foreach (var Instructor in Model)
         {
             <tr>
-                <td>@element.InstructorId</td>
-                <td>@element.InstructorFirstName</td>
-                <td>@element.InstructorLastName</td>
+                <td>@Instructor.InstructorId</td>
+                <td>@Instructor.InstructorFirstName</td>
+                <td>@Instructor.InstructorLastName</td>
                 <td>
                     @{
 
-                        if (@element.IsTenured == true)
+                        if (@Instructor.IsTenured == true)
                         {
                             <span>Full-Time</span>
                         }
@@ -41,16 +42,19 @@
                         }
                     }
                 </td>
-                <td>@element.Rank</td>
-                <td>@element.DateHired</td>
+                <td>@Instructor.Rank</td>
+                <td>@Instructor.DateHired</td>
                 <td>
-                        <a asp-action="ShowDetails" asp-route-id="@element.InstructorId" class="btn btn-primary">Show Details</a>
+                    <a asp-action="ShowDetails" asp-route-id="@Instructor.InstructorId" class="btn btn-primary">Show Details</a>
                 </td>
                 <td>
-                    <a asp-action="UpdateInstructor" asp-route-id="@element.InstructorId" class="btn btn-primary">Update</a>
+                    <a asp-action="UpdateInstructor" asp-route-id="@Instructor.InstructorId" class="btn btn-primary">Update</a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@Instructor.InstructorId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }
     }
 </table>
-</div>
+<a class="btn btn-primary" asp-action="AddInst">Add Instructor</a>

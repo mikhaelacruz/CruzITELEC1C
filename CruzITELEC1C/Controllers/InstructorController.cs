@@ -36,6 +36,9 @@ namespace CruzITELEC1C.Controllers
         [HttpPost]
         public IActionResult AddInst(Instructor NewInstructor)
         {
+            if (!ModelState.IsValid)
+                return View();
+
             _testData.InstructorList.Add(NewInstructor);
             return View("Index", _testData.InstructorList);
         }

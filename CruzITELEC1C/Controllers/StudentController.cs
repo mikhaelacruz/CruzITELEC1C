@@ -18,7 +18,7 @@ namespace CruzITELEC1C.Controllers
 
         public IActionResult ShowDetails(int id)
         {
-            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
+            StudentList? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
 
             if (student != null)
             {
@@ -32,8 +32,11 @@ namespace CruzITELEC1C.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddStudent(Student NewStudent)
+        public IActionResult AddStudent(StudentList NewStudent)
         {
+            if (!ModelState.IsValid)
+                return View();
+
             _dummyData.StudentList.Add(NewStudent);
             return View("Index", _dummyData.StudentList);
         }
@@ -42,7 +45,7 @@ namespace CruzITELEC1C.Controllers
         public IActionResult UpdateStudent(int id)
         {
 
-            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
+            StudentList? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
 
             if (student != null)
             {
@@ -51,9 +54,9 @@ namespace CruzITELEC1C.Controllers
             return NotFound();
         }
         [HttpPost]
-        public IActionResult UpdateStudent(Student UpdateStudent)
+        public IActionResult UpdateStudent(StudentList UpdateStudent)
         {
-            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == UpdateStudent.StudentId);
+            StudentList? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == UpdateStudent.StudentId);
 
             if (student != null)
             {
@@ -71,7 +74,7 @@ namespace CruzITELEC1C.Controllers
         public IActionResult Delete(int id)
         {
 
-            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
+            StudentList? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == id);
 
             if (student != null)
             {
@@ -81,10 +84,10 @@ namespace CruzITELEC1C.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Student newStudent)
+        public IActionResult Delete(StudentList newStudent)
         {
 
-            Student? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == newStudent.StudentId);
+            StudentList? student = _dummyData.StudentList.FirstOrDefault(t => t.StudentId == newStudent.StudentId);
 
             if (student != null)
                 _dummyData.StudentList.Remove(student);

@@ -3,7 +3,7 @@ namespace CruzITELEC1C.Services
 {
     public interface IMyFakeDataService
     { 
-        List<Student> StudentList { get; }
+        List<StudentList> StudentList { get; }
         List<Instructor> InstructorList { get; }
     }
 }

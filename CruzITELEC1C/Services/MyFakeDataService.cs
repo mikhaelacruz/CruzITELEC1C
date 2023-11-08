@@ -7,15 +7,15 @@ namespace CruzITELEC1C.Services
 {
     public class MyFakeDataService : IMyFakeDataService
     {
-        public List<Student> StudentList { get; }
+        public List<StudentList> StudentList { get; }
         public List<Instructor> InstructorList { get; }
 
         public MyFakeDataService() // constructor
         {
             // Initialize StudentList
-            StudentList = new List<Student>
+            StudentList = new List<StudentList>
             {
-                new Student()
+                new StudentList()
                 {
                     StudentName = "Mikhaela Cruz",
                     DateEnrolled = DateTime.Now,
@@ -23,7 +23,7 @@ namespace CruzITELEC1C.Services
                     Course = Course.BSIS,
                     StudentId = 100
                 },
-                new Student()
+                new StudentList()
                 {
                     StudentName = "Ollie Bahinting",
                     DateEnrolled = DateTime.Parse("25/5/2020"),
@@ -31,7 +31,7 @@ namespace CruzITELEC1C.Services
                     Course = Course.BSIT,
                     StudentId = 200
                 },
-                new Student()
+                new StudentList()
                 {
                     StudentName = "Kirby Wenceslao",
                     DateEnrolled = DateTime.Parse("14/7/2019"),
